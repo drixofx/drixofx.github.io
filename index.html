@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minecraft Developer</title>
+  <title>Drixo | Minecraft Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gradient-to-br from-black via-blue-950 to-blue-900 text-white min-h-screen flex flex-col">
   
   <!-- Navbar -->
   <nav class="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-sm fixed w-full z-10">
-    <div class="text-2xl font-bold text-blue-400">TvůjNick</div>
+    <div class="text-2xl font-bold text-blue-400">Drixo</div>
     <ul class="flex space-x-6 text-gray-300">
+      <li><a href="#omne" class="hover:text-blue-400">O mně</a></li>
       <li><a href="#sluzby" class="hover:text-blue-400">Služby</a></li>
       <li><a href="#cenik" class="hover:text-blue-400">Ceník</a></li>
       <li><a href="#kontakt" class="hover:text-blue-400">Kontakt</a></li>
@@ -20,23 +21,38 @@
 
   <!-- Hero Section -->
   <header class="flex-1 flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-5xl font-extrabold mb-4">Minecraft Developer</h1>
+    <h1 class="text-5xl font-extrabold mb-4">Ahoj, já jsem <span class="text-blue-400">Drixo</span></h1>
     <p class="text-lg text-gray-300 max-w-2xl mb-6">
-      Tvořím pluginy, skripty a kompletní nastavení serverů. 
-      Pomůžu ti vytvořit originální a stabilní Minecraft server.
+      Minecraft developer zaměřený na tvorbu pluginů, skriptů a správu serverů.
+      Pomáhám komunitám i jednotlivcům vytvářet originální, stabilní a zábavné servery.
     </p>
     <div class="flex space-x-4">
       <a href="#cenik" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow">
-        💰 Ceník
+        💰 Podívej se na ceník
       </a>
       <a href="#kontakt" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold shadow">
-        📩 Kontakt
+        📩 Kontaktuj mě
       </a>
     </div>
   </header>
 
+  <!-- O mně -->
+  <section id="omne" class="py-20 px-6 bg-black/40">
+    <div class="container mx-auto text-center max-w-3xl">
+      <h2 class="text-3xl font-bold text-blue-400 mb-6">O mně</h2>
+      <p class="text-gray-300 leading-relaxed mb-4">
+        Jmenuji se Drixo a vývoji Minecraft pluginů a skriptů se věnuji několik let.
+        Mám zkušenosti s konfigurací serverů, optimalizací výkonu a tvorbou custom systémů pro menší i větší komunity.
+      </p>
+      <p class="text-gray-300 leading-relaxed">
+        Práce s Minecraftem mě baví, protože spojuje programování, kreativitu a budování komunit.
+        Mým cílem je doručit kvalitní řešení přesně podle potřeb hráčů a majitelů serverů.
+      </p>
+    </div>
+  </section>
+
   <!-- Služby -->
-  <section id="sluzby" class="py-20 px-6 bg-black/40">
+  <section id="sluzby" class="py-20 px-6">
     <div class="container mx-auto text-center">
       <h2 class="text-3xl font-bold text-blue-400 mb-10">Služby</h2>
       <div class="grid md:grid-cols-3 gap-8">
@@ -52,6 +68,20 @@
           <h3 class="text-xl font-semibold mb-2">Server Management</h3>
           <p class="text-gray-300">Optimalizace serverů (Spigot, Paper, BungeeCord, atd.).</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technologie -->
+  <section id="technologie" class="py-20 px-6 bg-black/40">
+    <div class="container mx-auto text-center max-w-4xl">
+      <h2 class="text-3xl font-bold text-blue-400 mb-10">Technologie</h2>
+      <div class="flex flex-wrap justify-center gap-6">
+        <span class="bg-blue-900/40 px-4 py-2 rounded-lg">Java</span>
+        <span class="bg-blue-900/40 px-4 py-2 rounded-lg">Skript</span>
+        <span class="bg-blue-900/40 px-4 py-2 rounded-lg">Spigot/PaperMC</span>
+        <span class="bg-blue-900/40 px-4 py-2 rounded-lg">BungeeCord</span>
+        <span class="bg-blue-900/40 px-4 py-2 rounded-lg">GitHub</span>
       </div>
     </div>
   </section>
@@ -91,14 +121,14 @@
   <section id="kontakt" class="py-20 px-6 bg-black/40">
     <div class="container mx-auto text-center">
       <h2 class="text-3xl font-bold text-blue-400 mb-6">Kontakt</h2>
-      <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">TvůjDiscord#1234</span></p>
-      <p class="text-gray-300">Email: <span class="font-semibold">tvujemail@example.com</span></p>
+      <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">Drixo#1234</span></p>
+      <p class="text-gray-300">Email: <span class="font-semibold">drixo@example.com</span></p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-6 text-center text-gray-400 bg-black/50">
-    <p>&copy; 2025 TvůjNick – Minecraft Developer</p>
+    <p>&copy; 2025 Drixo – Minecraft Developer</p>
   </footer>
 
 </body>
