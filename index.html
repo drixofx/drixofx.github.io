@@ -3,85 +3,103 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Minecraft Developer Portfolio</title>
+  <title>Minecraft Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white font-sans">
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-black to-blue-900 p-6 shadow-lg">
-    <div class="container mx-auto text-center">
-      <h1 class="text-4xl font-bold">TvůjNick</h1>
-      <p class="text-lg text-gray-300">Minecraft Developer | Java | Skript | Pluginy</p>
+<body class="bg-gradient-to-br from-black via-blue-950 to-blue-900 text-white min-h-screen flex flex-col">
+  
+  <!-- Navbar -->
+  <nav class="flex justify-between items-center px-8 py-4 bg-black/30 backdrop-blur-sm fixed w-full z-10">
+    <div class="text-2xl font-bold text-blue-400">TvůjNick</div>
+    <ul class="flex space-x-6 text-gray-300">
+      <li><a href="#sluzby" class="hover:text-blue-400">Služby</a></li>
+      <li><a href="#cenik" class="hover:text-blue-400">Ceník</a></li>
+      <li><a href="#kontakt" class="hover:text-blue-400">Kontakt</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="flex-1 flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-5xl font-extrabold mb-4">Minecraft Developer</h1>
+    <p class="text-lg text-gray-300 max-w-2xl mb-6">
+      Tvořím pluginy, skripty a kompletní nastavení serverů. 
+      Pomůžu ti vytvořit originální a stabilní Minecraft server.
+    </p>
+    <div class="flex space-x-4">
+      <a href="#cenik" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold shadow">
+        💰 Ceník
+      </a>
+      <a href="#kontakt" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold shadow">
+        📩 Kontakt
+      </a>
     </div>
   </header>
 
-  <!-- O mně -->
-  <section class="container mx-auto py-16 px-6">
-    <h2 class="text-3xl font-bold text-blue-400 mb-6">O mně</h2>
-    <p class="text-gray-300 leading-relaxed">
-      Jsem Minecraft developer se zaměřením na vývoj pluginů, skriptů a konfiguraci serverů.
-      Mám zkušenosti s Javou, Skriptem a optimalizací serverů pro malé i velké komunity.
-    </p>
-  </section>
-
   <!-- Služby -->
-  <section class="container mx-auto py-16 px-6">
-    <h2 class="text-3xl font-bold text-blue-400 mb-6">Služby</h2>
-    <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-blue-900/30 p-6 rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-2">Pluginy na míru</h3>
-        <p class="text-gray-300">Vývoj custom pluginů v Javě pro váš server.</p>
-      </div>
-      <div class="bg-blue-900/30 p-6 rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-2">Skriptování</h3>
-        <p class="text-gray-300">Tvorba a úprava skriptů dle vašich potřeb.</p>
-      </div>
-      <div class="bg-blue-900/30 p-6 rounded-2xl shadow">
-        <h3 class="text-xl font-semibold mb-2">Server management</h3>
-        <p class="text-gray-300">Optimalizace a nastavení serverů (Spigot, Paper, BungeeCord).</p>
+  <section id="sluzby" class="py-20 px-6 bg-black/40">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-400 mb-10">Služby</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-blue-900/30 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-2">Pluginy na míru</h3>
+          <p class="text-gray-300">Tvorba originálních pluginů v Javě podle tvých představ.</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-2">Skriptování</h3>
+          <p class="text-gray-300">Rychlé skripty a konfigurace serveru přes Skript plugin.</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-2">Server Management</h3>
+          <p class="text-gray-300">Optimalizace serverů (Spigot, Paper, BungeeCord, atd.).</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Ceník -->
-  <section class="container mx-auto py-16 px-6">
-    <h2 class="text-3xl font-bold text-blue-400 mb-6">Ceník</h2>
-    <div class="overflow-x-auto">
-      <table class="min-w-full border border-gray-700">
-        <thead class="bg-blue-900/50">
-          <tr>
-            <th class="py-3 px-6 text-left">Služba</th>
-            <th class="py-3 px-6 text-left">Cena od</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-t border-gray-700">
-            <td class="py-3 px-6">Plugin na míru</td>
-            <td class="py-3 px-6">200 Kč</td>
-          </tr>
-          <tr class="border-t border-gray-700">
-            <td class="py-3 px-6">Skript</td>
-            <td class="py-3 px-6">100 Kč</td>
-          </tr>
-          <tr class="border-t border-gray-700">
-            <td class="py-3 px-6">Konfigurace serveru</td>
-            <td class="py-3 px-6">150 Kč</td>
-          </tr>
-        </tbody>
-      </table>
+  <section id="cenik" class="py-20 px-6">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-400 mb-10">Ceník</h2>
+      <div class="max-w-3xl mx-auto bg-blue-900/30 rounded-xl shadow-lg overflow-hidden">
+        <table class="w-full text-left">
+          <thead class="bg-blue-900/50">
+            <tr>
+              <th class="py-3 px-6">Služba</th>
+              <th class="py-3 px-6">Cena od</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-t border-gray-700">
+              <td class="py-3 px-6">Plugin na míru</td>
+              <td class="py-3 px-6">200 Kč</td>
+            </tr>
+            <tr class="border-t border-gray-700">
+              <td class="py-3 px-6">Skript</td>
+              <td class="py-3 px-6">100 Kč</td>
+            </tr>
+            <tr class="border-t border-gray-700">
+              <td class="py-3 px-6">Nastavení serveru</td>
+              <td class="py-3 px-6">150 Kč</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
   <!-- Kontakt -->
-  <section class="container mx-auto py-16 px-6 text-center">
-    <h2 class="text-3xl font-bold text-blue-400 mb-6">Kontakt</h2>
-    <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">TvůjDiscord#1234</span></p>
-    <p class="text-gray-300">Email: <span class="font-semibold">tvujemail@example.com</span></p>
+  <section id="kontakt" class="py-20 px-6 bg-black/40">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-400 mb-6">Kontakt</h2>
+      <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">TvůjDiscord#1234</span></p>
+      <p class="text-gray-300">Email: <span class="font-semibold">tvujemail@example.com</span></p>
+    </div>
   </section>
 
   <!-- Footer -->
-  <footer class="bg-gradient-to-r from-black to-blue-900 py-6 text-center text-gray-400">
+  <footer class="py-6 text-center text-gray-400 bg-black/50">
     <p>&copy; 2025 TvůjNick – Minecraft Developer</p>
   </footer>
+
 </body>
 </html>
