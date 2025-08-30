@@ -10,9 +10,20 @@
     html {
       scroll-behavior: smooth;
     }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeIn 1s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
-<body class="bg-gradient-to-br from-black via-blue-950 to-blue-900 text-white min-h-screen flex flex-col">
+<body class="bg-gradient-to-br from-black via-blue-950 to-blue-900 text-white min-h-screen">
 
   <!-- Navbar -->
   <nav class="fixed w-full z-20 bg-black/40 backdrop-blur-md shadow-md">
@@ -21,6 +32,7 @@
       <ul class="hidden md:flex space-x-8 text-gray-300">
         <li><a href="#omne" class="hover:text-blue-400">O mně</a></li>
         <li><a href="#sluzby" class="hover:text-blue-400">Služby</a></li>
+        <li><a href="#reference" class="hover:text-blue-400">Reference</a></li>
         <li><a href="#cenik" class="hover:text-blue-400">Ceník</a></li>
         <li><a href="#kontakt" class="hover:text-blue-400">Kontakt</a></li>
       </ul>
@@ -33,21 +45,21 @@
     <div id="mobile-menu" class="hidden flex-col bg-black/90 text-center md:hidden">
       <a href="#omne" class="py-3 hover:text-blue-400">O mně</a>
       <a href="#sluzby" class="py-3 hover:text-blue-400">Služby</a>
+      <a href="#reference" class="py-3 hover:text-blue-400">Reference</a>
       <a href="#cenik" class="py-3 hover:text-blue-400">Ceník</a>
       <a href="#kontakt" class="py-3 hover:text-blue-400">Kontakt</a>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="flex-1 flex flex-col justify-center items-center text-center px-6 pt-36">
-    <h1 class="text-5xl md:text-6xl font-extrabold mb-6 animate-fade-in">
-      Ahoj, já jsem <span class="text-blue-400">Drixo</span>
+  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
+    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 fade-in">
+      Budoucnost Minecraft serverů s <span class="text-blue-400">Drixem</span>
     </h1>
-    <p class="text-lg text-gray-300 max-w-2xl mb-8 animate-fade-in delay-200">
-      Minecraft developer zaměřený na tvorbu pluginů, skriptů a správu serverů.
-      Pomáhám komunitám i jednotlivcům vytvářet originální, stabilní a zábavné projekty.
+    <p class="text-lg text-gray-300 max-w-2xl mb-8 fade-in" style="animation-delay:0.3s">
+      Vytvářím stabilní, výkonné a jedinečné pluginy a skripty, které posunou tvůj server na další úroveň.
     </p>
-    <div class="flex flex-col sm:flex-row gap-4 animate-fade-in delay-400">
+    <div class="flex flex-col sm:flex-row gap-4 fade-in" style="animation-delay:0.6s">
       <a href="#cenik" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg">
         💰 Podívej se na ceník
       </a>
@@ -55,21 +67,31 @@
         📩 Kontaktuj mě
       </a>
     </div>
-  </header>
+  </section>
 
   <!-- O mně -->
   <section id="omne" class="py-24 px-6">
-    <div class="container mx-auto max-w-4xl">
-      <div class="bg-blue-900/30 p-10 rounded-2xl shadow-xl text-center">
-        <h2 class="text-3xl font-bold text-blue-400 mb-8">O mně</h2>
-        <p class="text-gray-300 leading-relaxed mb-6">
-          Jmenuji se <strong>Drixo</strong> a již několik let se věnuji vývoji <strong>Minecraft pluginů a skriptů</strong>. Mojí specializací je tvorba <strong>custom řešení</strong>, která zlepšují herní zážitek a umožňují serverům fungovat stabilně a efektivně.
-        </p>
-        <ul class="text-gray-300 leading-relaxed text-left space-y-3">
-          <li>✅ <strong>Konfigurace serverů</strong> – optimalizace prostředí pro stabilní provoz.</li>
-          <li>✅ <strong>Optimalizace výkonu</strong> – rychlé načítání a minimální lagy.</li>
-          <li>✅ <strong>Custom systémy</strong> – jedinečné pluginy a skripty na míru.</li>
-        </ul>
+    <div class="container mx-auto max-w-4xl text-center">
+      <h2 class="text-4xl font-bold text-blue-400 mb-8">O mně</h2>
+      <p class="text-gray-300 leading-relaxed mb-6">
+        Jsem <strong>Drixo</strong>, zkušený <strong>Minecraft developer</strong> se specializací na custom pluginy, skripty a správu serverů.
+      </p>
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
+          <i class="ph-server text-4xl text-blue-400 mb-4"></i>
+          <h3 class="font-semibold mb-2">Optimalizace serverů</h3>
+          <p class="text-gray-400">Stabilita a výkon na prvním místě.</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
+          <i class="ph-code text-4xl text-blue-400 mb-4"></i>
+          <h3 class="font-semibold mb-2">Pluginy & Skripty</h3>
+          <p class="text-gray-400">Custom funkce šité na míru tvému projektu.</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
+          <i class="ph-lightning text-4xl text-blue-400 mb-4"></i>
+          <h3 class="font-semibold mb-2">Rychlé dodání</h3>
+          <p class="text-gray-400">Efektivní řešení bez zbytečných průtahů.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -77,67 +99,69 @@
   <!-- Služby -->
   <section id="sluzby" class="py-24 px-6 bg-black/30">
     <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold text-blue-400 mb-12">Služby</h2>
+      <h2 class="text-4xl font-bold text-blue-400 mb-12">Služby</h2>
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
           <h3 class="text-xl font-semibold mb-4">Pluginy na míru</h3>
-          <p class="text-gray-300">Od jednoduchých systémů až po komplexní mechaniky – vždy s důrazem na výkon a stabilitu.</p>
+          <p class="text-gray-300">Od malých systémů po komplexní mechaniky pro minihry i survival.</p>
         </div>
         <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
           <h3 class="text-xl font-semibold mb-4">Skriptování</h3>
-          <p class="text-gray-300">Rychlá tvorba custom skriptů – ideální pro menší servery, kde je potřeba rychlé řešení.</p>
+          <p class="text-gray-300">Rychlá tvorba custom skriptů pro menší servery a rychlé nasazení.</p>
         </div>
         <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-4">Server Management</h3>
-          <p class="text-gray-300">Kompletní správa serverů – konfigurace, optimalizace, bezpečnost a databáze.</p>
+          <h3 class="text-xl font-semibold mb-4">Správa serveru</h3>
+          <p class="text-gray-300">Kompletní konfigurace, optimalizace a bezpečnostní opatření.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reference -->
+  <section id="reference" class="py-24 px-6">
+    <div class="container mx-auto text-center">
+      <h2 class="text-4xl font-bold text-blue-400 mb-12">Reference</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
+          <p class="italic text-gray-300 mb-4">„Drixo nám pomohl nastavit server a vše běží bez problémů. Profesionální přístup a rychlá komunikace!“</p>
+          <p class="text-gray-400">— Klient A</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
+          <p class="italic text-gray-300 mb-4">„Custom plugin od Drixa změnil způsob, jakým hráči interagují na našem serveru. Skvělá práce!“</p>
+          <p class="text-gray-400">— Klient B</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Ceník -->
-  <section id="cenik" class="py-24 px-6">
+  <section id="cenik" class="py-24 px-6 bg-black/30">
     <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold text-blue-400 mb-12">Ceník</h2>
-      <div class="max-w-3xl mx-auto bg-blue-900/30 rounded-2xl shadow-lg overflow-hidden">
-        <table class="w-full text-left">
-          <thead class="bg-blue-900/50">
-            <tr>
-              <th class="py-4 px-6">Služba</th>
-              <th class="py-4 px-6">Cena od</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-t border-gray-700">
-              <td class="py-4 px-6">Jednoduchý skript</td>
-              <td class="py-4 px-6">100 Kč</td>
-            </tr>
-            <tr class="border-t border-gray-700">
-              <td class="py-4 px-6">Plugin – základní</td>
-              <td class="py-4 px-6">250 Kč</td>
-            </tr>
-            <tr class="border-t border-gray-700">
-              <td class="py-4 px-6">Plugin – pokročilý</td>
-              <td class="py-4 px-6">500 Kč</td>
-            </tr>
-            <tr class="border-t border-gray-700">
-              <td class="py-4 px-6">Nastavení serveru</td>
-              <td class="py-4 px-6">300 Kč</td>
-            </tr>
-            <tr class="border-t border-gray-700">
-              <td class="py-4 px-6">Dlouhodobá spolupráce</td>
-              <td class="py-4 px-6">Individuálně</td>
-            </tr>
-          </tbody>
-        </table>
+      <h2 class="text-4xl font-bold text-blue-400 mb-12">Ceník</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-4">Jednoduchý skript</h3>
+          <p class="text-gray-300 mb-4">malý příkaz, jednoduchá funkce</p>
+          <p class="text-2xl font-bold">100 Kč</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-4">Plugin – základní</h3>
+          <p class="text-gray-300 mb-4">teleport, scoreboard, vote, menší minihra</p>
+          <p class="text-2xl font-bold">250 Kč</p>
+        </div>
+        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
+          <h3 class="text-xl font-semibold mb-4">Plugin – pokročilý</h3>
+          <p class="text-gray-300 mb-4">ekonomika, komplexní systémy, survival/minigame funkce</p>
+          <p class="text-2xl font-bold">500 Kč</p>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Kontakt -->
-  <section id="kontakt" class="py-24 px-6 bg-black/30">
+  <section id="kontakt" class="py-24 px-6">
     <div class="container mx-auto text-center">
-      <h2 class="text-3xl font-bold text-blue-400 mb-8">Kontakt</h2>
+      <h2 class="text-4xl font-bold text-blue-400 mb-8">Kontakt</h2>
       <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">Drixofx</span></p>
       <p class="text-gray-300">Email: <span class="font-semibold">drixofx@gmail.com</span></p>
     </div>
