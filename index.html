@@ -4,181 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Drixo | Minecraft Developer</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <style>
-    html {
-      scroll-behavior: smooth;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeIn 1s forwards;
-    }
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body class="bg-gradient-to-br from-black via-blue-950 to-blue-900 text-white min-h-screen">
 
-  <!-- Navbar -->
-  <nav class="fixed w-full z-20 bg-black/40 backdrop-blur-md shadow-md">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-      <div class="text-2xl font-bold text-white">Drixo</div>
-      <ul class="hidden md:flex space-x-8 text-gray-300">
-        <li><a href="#omne" class="hover:text-blue-400">O mně</a></li>
-        <li><a href="#sluzby" class="hover:text-blue-400">Služby</a></li>
-        <li><a href="#reference" class="hover:text-blue-400">Reference</a></li>
-        <li><a href="#cenik" class="hover:text-blue-400">Ceník</a></li>
-        <li><a href="#kontakt" class="hover:text-blue-400">Kontakt</a></li>
-      </ul>
-      <!-- Mobile button -->
-      <button id="menu-btn" class="md:hidden text-white text-3xl">
-        <i class="ph-list"></i>
-      </button>
-    </div>
-    <!-- Mobile menu -->
-    <div id="mobile-menu" class="hidden flex-col bg-black/90 text-center md:hidden">
-      <a href="#omne" class="py-3 hover:text-blue-400">O mně</a>
-      <a href="#sluzby" class="py-3 hover:text-blue-400">Služby</a>
-      <a href="#reference" class="py-3 hover:text-blue-400">Reference</a>
-      <a href="#cenik" class="py-3 hover:text-blue-400">Ceník</a>
-      <a href="#kontakt" class="py-3 hover:text-blue-400">Kontakt</a>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">Drixo</div>
+    <ul class="nav-links">
+      <li><a href="#omne">O mně</a></li>
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#cenik">Ceník</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="hamburger">
+      <span></span><span></span><span></span>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="h-screen flex flex-col justify-center items-center text-center px-6">
-    <h1 class="text-5xl md:text-7xl font-extrabold mb-6 fade-in">
-      Budoucnost Minecraft serverů s <span class="text-blue-400">Drixem</span>
-    </h1>
-    <p class="text-lg text-gray-300 max-w-2xl mb-8 fade-in" style="animation-delay:0.3s">
-      Vytvářím stabilní, výkonné a jedinečné pluginy a skripty, které posunou tvůj server na další úroveň.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 fade-in" style="animation-delay:0.6s">
-      <a href="#cenik" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg">
-        💰 Podívej se na ceník
-      </a>
-      <a href="#kontakt" class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg">
-        📩 Kontaktuj mě
-      </a>
+  <!-- HERO -->
+  <header class="hero" id="home">
+    <h1>Ahoj, já jsem <span class="highlight">Drixo</span></h1>
+    <p>Minecraft developer zaměřený na tvorbu pluginů, skriptů a správu serverů.</p>
+    <div class="hero-buttons">
+      <a href="#cenik" class="btn blue">💰 Podívej se na ceník</a>
+      <a href="#kontakt" class="btn purple">📩 Kontaktuj mě</a>
+    </div>
+  </header>
+
+  <!-- O MNĚ -->
+  <section id="omne" class="section">
+    <h2>O mně</h2>
+    <p>Jmenuji se <strong>Drixo</strong> a věnuji se vývoji Minecraft pluginů a skriptů...</p>
+  </section>
+
+  <!-- SLUŽBY -->
+  <section id="sluzby" class="section">
+    <h2>Služby</h2>
+    <div class="cards">
+      <div class="card">Pluginy na míru</div>
+      <div class="card">Skriptování</div>
+      <div class="card">Server Management</div>
     </div>
   </section>
 
-  <!-- O mně -->
-  <section id="omne" class="py-24 px-6">
-    <div class="container mx-auto max-w-4xl text-center">
-      <h2 class="text-4xl font-bold text-blue-400 mb-8">O mně</h2>
-      <p class="text-gray-300 leading-relaxed mb-6">
-        Jsem <strong>Drixo</strong>, zkušený <strong>Minecraft developer</strong> se specializací na custom pluginy, skripty a správu serverů.
-      </p>
-      <div class="grid md:grid-cols-3 gap-6 mt-10">
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
-          <i class="ph-server text-4xl text-blue-400 mb-4"></i>
-          <h3 class="font-semibold mb-2">Optimalizace serverů</h3>
-          <p class="text-gray-400">Stabilita a výkon na prvním místě.</p>
-        </div>
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
-          <i class="ph-code text-4xl text-blue-400 mb-4"></i>
-          <h3 class="font-semibold mb-2">Pluginy & Skripty</h3>
-          <p class="text-gray-400">Custom funkce šité na míru tvému projektu.</p>
-        </div>
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
-          <i class="ph-lightning text-4xl text-blue-400 mb-4"></i>
-          <h3 class="font-semibold mb-2">Rychlé dodání</h3>
-          <p class="text-gray-400">Efektivní řešení bez zbytečných průtahů.</p>
-        </div>
-      </div>
+  <!-- CENÍK -->
+  <section id="cenik" class="section">
+    <h2>Ceník</h2>
+    <div class="pricing">
+      <div class="price-card">Jednoduchý skript – od 100 Kč</div>
+      <div class="price-card">Plugin – od 250 Kč</div>
+      <div class="price-card">Server Management – od 300 Kč</div>
     </div>
   </section>
 
-  <!-- Služby -->
-  <section id="sluzby" class="py-24 px-6 bg-black/30">
-    <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold text-blue-400 mb-12">Služby</h2>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-4">Pluginy na míru</h3>
-          <p class="text-gray-300">Od malých systémů po komplexní mechaniky pro minihry i survival.</p>
-        </div>
-        <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-4">Skriptování</h3>
-          <p class="text-gray-300">Rychlá tvorba custom skriptů pro menší servery a rychlé nasazení.</p>
-        </div>
-        <div class="bg-blue-900/30 p-8 rounded-2xl shadow-lg hover:scale-105 transition">
-          <h3 class="text-xl font-semibold mb-4">Správa serveru</h3>
-          <p class="text-gray-300">Kompletní konfigurace, optimalizace a bezpečnostní opatření.</p>
-        </div>
-      </div>
-    </div>
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section">
+    <h2>Kontakt</h2>
+    <p>Discord: <strong>Drixofx</strong></p>
+    <p>Email: <strong>drixofx@gmail.com</strong></p>
   </section>
 
-  <!-- Reference -->
-  <section id="reference" class="py-24 px-6">
-    <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold text-blue-400 mb-12">Reference</h2>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
-          <p class="italic text-gray-300 mb-4">„Drixo nám pomohl nastavit server a vše běží bez problémů. Profesionální přístup a rychlá komunikace!“</p>
-          <p class="text-gray-400">— Klient A</p>
-        </div>
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-md">
-          <p class="italic text-gray-300 mb-4">„Custom plugin od Drixa změnil způsob, jakým hráči interagují na našem serveru. Skvělá práce!“</p>
-          <p class="text-gray-400">— Klient B</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Ceník -->
-  <section id="cenik" class="py-24 px-6 bg-black/30">
-    <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold text-blue-400 mb-12">Ceník</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-semibold mb-4">Jednoduchý skript</h3>
-          <p class="text-gray-300 mb-4">malý příkaz, jednoduchá funkce</p>
-          <p class="text-2xl font-bold">100 Kč</p>
-        </div>
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-semibold mb-4">Plugin – základní</h3>
-          <p class="text-gray-300 mb-4">teleport, scoreboard, vote, menší minihra</p>
-          <p class="text-2xl font-bold">250 Kč</p>
-        </div>
-        <div class="bg-blue-900/30 p-6 rounded-2xl shadow-lg">
-          <h3 class="text-xl font-semibold mb-4">Plugin – pokročilý</h3>
-          <p class="text-gray-300 mb-4">ekonomika, komplexní systémy, survival/minigame funkce</p>
-          <p class="text-2xl font-bold">500 Kč</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Kontakt -->
-  <section id="kontakt" class="py-24 px-6">
-    <div class="container mx-auto text-center">
-      <h2 class="text-4xl font-bold text-blue-400 mb-8">Kontakt</h2>
-      <p class="text-gray-300 mb-2">Discord: <span class="font-semibold">Drixofx</span></p>
-      <p class="text-gray-300">Email: <span class="font-semibold">drixofx@gmail.com</span></p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-8 text-center text-gray-400 bg-black/50">
+  <!-- FOOTER -->
+  <footer>
     <p>&copy; 2025 Drixo – Minecraft Developer</p>
   </footer>
 
-  <!-- Script for mobile menu -->
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    menuBtn.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
