@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tvůj Nick | Minecraft Developer</title>
+  <title>Drixo | Minecraft Developer</title>
   <meta name="description" content="Minecraft plugin & Skript vývojář – custom pluginy, optimalizace výkonu, konfigurace serverů a nepřetržitá podpora." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +14,9 @@
       --bg2:#0e1530;
       --text:#dfe7ff;
       --muted:#a0b3d1;
-      --primary:#22c1dc; /* azurová */
-      --accent:#7a5cff;  /* fialová */
-      --card:#0f1935cc; /* skleněný efekt */
+      --primary:#22c1dc; 
+      --accent:#7a5cff;  
+      --card:#0f1935cc; 
       --stroke:#1e2b55;
       --success:#39d98a;
       --warning:#ffb020;
@@ -40,7 +40,6 @@
     .btn:hover{transform:translateY(-2px); filter:saturate(1.08)}
     .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--stroke)}
 
-    /* Navbar */
     header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,16,32,.85), rgba(10,16,32,.55)); border-bottom:1px solid #0e1a3c}
     .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
     .brand{display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.2px}
@@ -49,21 +48,18 @@
     nav a{padding:.6rem .8rem; color:var(--muted); border-radius:10px}
     nav a:hover{color:var(--text); background:#0f1b3a}
 
-    /* Sections */
     section{padding:96px 0}
     h1,h2,h3{margin:0 0 14px}
     h1{font-size:clamp(32px, 4.8vw, 56px); line-height:1.04}
     h2{font-size:clamp(26px,3.8vw,40px)}
     p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
 
-    /* Hero */
     .hero{position:relative; text-align:center}
     .hero .kicker{letter-spacing:.24em; text-transform:uppercase; color:#7aa7ff; font-weight:700; font-size:.82rem}
     .hero h1 span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
     .hero .sub{max-width:850px; margin:18px auto 28px}
     .hero-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
 
-    /* Grid cards */
     .grid{display:grid; gap:18px}
     .grid.cols-3{grid-template-columns:repeat(3,1fr)}
     .grid.cols-2{grid-template-columns:repeat(2,1fr)}
@@ -75,20 +71,17 @@
     .card p{color:var(--muted)}
     .icon{width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(145deg,#15224b,#0b163d); border:1px solid #1b2a5e; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
 
-    /* Stats */
     .stats{display:flex; gap:18px; flex-wrap:wrap}
     .stat{flex:1 1 180px; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; text-align:center}
     .stat .num{font-size:1.8rem; font-weight:800; background:var(--grad); -webkit-background-clip:text; color:transparent}
     .stat small{color:var(--muted)}
 
-    /* Testimonials */
     .testi{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
     @media (max-width:900px){ .testi{grid-template-columns:1fr} }
     .quote{position:relative}
     .quote:before{content:"\201C"; position:absolute; top:-22px; left:-6px; font-size:64px; line-height:0; color:#30407a}
     .avatar{width:44px;height:44px;border-radius:50%;background:#1a2b5e; display:inline-block}
 
-    /* Pricing */
     .pricing{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
     @media (max-width:900px){ .pricing{grid-template-columns:1fr} }
     .price-card{position:relative}
@@ -97,7 +90,6 @@
     .check{display:flex; gap:10px; align-items:flex-start; margin:.44rem 0; color:var(--muted)}
     .check svg{flex:0 0 18px}
 
-    /* Contact */
     form{display:grid; gap:14px}
     input, textarea, select{width:100%; padding:14px; border-radius:12px; border:1px solid var(--stroke); background:#0b1736; color:var(--text); outline:none}
     textarea{min-height:160px; resize:vertical}
@@ -105,19 +97,16 @@
     .form-row{display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
     @media (max-width:700px){ .form-row{grid-template-columns:1fr} }
 
-    /* Footer */
     footer{padding:36px 0; border-top:1px solid #0e1a3c; color:#8ea2cf}
 
-    /* Reveal on scroll */
     .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
     .reveal.show{opacity:1; transform:none}
 
-    /* Floating dots */
     .float-dot{position:fixed; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #a5d8ff, #22c1dc11); filter:blur(.2px); opacity:.7; z-index:0}
   </style>
 </head>
 <body>
-  <!-- decorative dots -->
+  
   <div class="float-dot" style="left:2%; top:90%"></div>
   <div class="float-dot" style="left:92%; top:8%"></div>
   <div class="float-dot" style="left:85%; top:84%"></div>
@@ -126,7 +115,6 @@
     <div class="container nav">
       <a class="brand" href="#top">
         <span class="logo" aria-hidden="true">
-          <!-- simple cube icon -->
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="#061022" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7a5cff"/><stop offset="1" stop-color="#22c1dc"/></linearGradient></defs></svg>
         </span>
         <span>Minecraft Developer</span>
@@ -142,7 +130,6 @@
   </header>
 
   <main id="top">
-    <!-- HERO -->
     <section class="hero">
       <div class="container">
         <div class="kicker">Ahoj, jsem</div>
@@ -155,7 +142,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about">
       <div class="container reveal">
         <h2>O mně</h2>
@@ -191,7 +177,6 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
     <section id="services">
       <div class="container reveal">
         <h2>Služby</h2>
@@ -243,7 +228,6 @@
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
     <section id="testimonials">
       <div class="container reveal">
         <h2>Reference</h2>
@@ -274,7 +258,6 @@
       </div>
     </section>
 
-    <!-- PRICING -->
     <section id="pricing">
       <div class="container reveal">
         <h2>Ceník</h2>
@@ -308,7 +291,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact">
       <div class="container reveal">
         <h2>Kontakt</h2>
@@ -359,17 +341,14 @@
   </footer>
 
   <script>
-    // Aktuální rok
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Jednoduché zobrazení sekcí při scrollu
     const revealItems = document.querySelectorAll('.reveal');
     const io = new IntersectionObserver(entries => {
       entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
     }, {threshold:.14});
     revealItems.forEach(el=>io.observe(el));
 
-    // Kontakt: mailto s validací
     const form = document.getElementById('contactForm');
     const msg = document.getElementById('formMsg');
     form.addEventListener('submit', (e)=>{
@@ -383,8 +362,7 @@
       const body = encodeURIComponent(
         `Jméno/Nick: ${data.name}\nEmail: ${data.email}\nTyp: ${data.type}\nVerze: ${data.version || ''}\n\nZpráva:\n${data.message}`
       );
-      // TODO: změň e-mail na svůj
-      const to = 'tvoje.adresa@example.com';
+      const to = 'drixofx@gmail.com';
       window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
       msg.textContent = 'Otevřel se e‑mailový klient s předvyplněnou zprávou. Pokud ne, napiš mi prosím ručně.';
       form.reset();
