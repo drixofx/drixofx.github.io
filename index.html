@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tvůj Nick | Minecraft Developer</title>
+  <meta name="description" content="Minecraft plugin & Skript vývojář – custom pluginy, optimalizace výkonu, konfigurace serverů a nepřetržitá podpora." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1221;
+      --bg2:#0e1530;
+      --text:#dfe7ff;
+      --muted:#a0b3d1;
+      --primary:#22c1dc; /* azurová */
+      --accent:#7a5cff;  /* fialová */
+      --card:#0f1935cc; /* skleněný efekt */
+      --stroke:#1e2b55;
+      --success:#39d98a;
+      --warning:#ffb020;
+      --danger:#ff5d5d;
+      --max:1150px;
+      --radius:18px;
+      --shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
+      --grad:linear-gradient(135deg,var(--accent),var(--primary));
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif; color:var(--text);
+      background: radial-gradient(1200px 600px at 85% -10%, #1a2a6f22, transparent),
+                  radial-gradient(1000px 500px at -10% 10%, #6a11cb22, transparent),
+                  linear-gradient(180deg,var(--bg),var(--bg2));
+    }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius:14px; font-weight:700; letter-spacing:.2px; background:var(--grad); color:#08111f; border:0; box-shadow:var(--shadow); transition:transform .16s ease, filter .2s ease}
+    .btn:hover{transform:translateY(-2px); filter:saturate(1.08)}
+    .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--stroke)}
+
+    /* Navbar */
+    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,16,32,.85), rgba(10,16,32,.55)); border-bottom:1px solid #0e1a3c}
+    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
+    .brand{display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.2px}
+    .brand .logo{width:34px;height:34px;border-radius:10px; background:var(--grad); display:grid; place-items:center; box-shadow:var(--shadow)}
+    .brand .logo svg{width:22px;height:22px}
+    nav a{padding:.6rem .8rem; color:var(--muted); border-radius:10px}
+    nav a:hover{color:var(--text); background:#0f1b3a}
+
+    /* Sections */
+    section{padding:96px 0}
+    h1,h2,h3{margin:0 0 14px}
+    h1{font-size:clamp(32px, 4.8vw, 56px); line-height:1.04}
+    h2{font-size:clamp(26px,3.8vw,40px)}
+    p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
+
+    /* Hero */
+    .hero{position:relative; text-align:center}
+    .hero .kicker{letter-spacing:.24em; text-transform:uppercase; color:#7aa7ff; font-weight:700; font-size:.82rem}
+    .hero h1 span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
+    .hero .sub{max-width:850px; margin:18px auto 28px}
+    .hero-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+
+    /* Grid cards */
+    .grid{display:grid; gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){ .grid.cols-3, .grid.cols-2{grid-template-columns:1fr} }
+
+    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+    .card .tag{display:inline-block; padding:.35rem .6rem; border-radius:999px; font-size:.76rem; background:#0f1b3a; border:1px solid #1c2a58; color:#9ab1df; margin-bottom:10px}
+    .card h3{font-size:1.24rem}
+    .card p{color:var(--muted)}
+    .icon{width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(145deg,#15224b,#0b163d); border:1px solid #1b2a5e; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
+
+    /* Stats */
+    .stats{display:flex; gap:18px; flex-wrap:wrap}
+    .stat{flex:1 1 180px; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; text-align:center}
+    .stat .num{font-size:1.8rem; font-weight:800; background:var(--grad); -webkit-background-clip:text; color:transparent}
+    .stat small{color:var(--muted)}
+
+    /* Testimonials */
+    .testi{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){ .testi{grid-template-columns:1fr} }
+    .quote{position:relative}
+    .quote:before{content:"\201C"; position:absolute; top:-22px; left:-6px; font-size:64px; line-height:0; color:#30407a}
+    .avatar{width:44px;height:44px;border-radius:50%;background:#1a2b5e; display:inline-block}
+
+    /* Pricing */
+    .pricing{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){ .pricing{grid-template-columns:1fr} }
+    .price-card{position:relative}
+    .price{font-size:2rem; font-weight:800}
+    .pill{display:inline-block; padding:.3rem .6rem; border-radius:999px; border:1px solid #27408f; background:#0d1a3a; color:#a7b8ea; font-size:.8rem}
+    .check{display:flex; gap:10px; align-items:flex-start; margin:.44rem 0; color:var(--muted)}
+    .check svg{flex:0 0 18px}
+
+    /* Contact */
+    form{display:grid; gap:14px}
+    input, textarea, select{width:100%; padding:14px; border-radius:12px; border:1px solid var(--stroke); background:#0b1736; color:var(--text); outline:none}
+    textarea{min-height:160px; resize:vertical}
+    label{font-size:.95rem; color:#b6c7ef}
+    .form-row{display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
+    @media (max-width:700px){ .form-row{grid-template-columns:1fr} }
+
+    /* Footer */
+    footer{padding:36px 0; border-top:1px solid #0e1a3c; color:#8ea2cf}
+
+    /* Reveal on scroll */
+    .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1; transform:none}
+
+    /* Floating dots */
+    .float-dot{position:fixed; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #a5d8ff, #22c1dc11); filter:blur(.2px); opacity:.7; z-index:0}
+  </style>
+</head>
+<body>
+  <!-- decorative dots -->
+  <div class="float-dot" style="left:2%; top:90%"></div>
+  <div class="float-dot" style="left:92%; top:8%"></div>
+  <div class="float-dot" style="left:85%; top:84%"></div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top">
+        <span class="logo" aria-hidden="true">
+          <!-- simple cube icon -->
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="#061022" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7a5cff"/><stop offset="1" stop-color="#22c1dc"/></linearGradient></defs></svg>
+        </span>
+        <span>Minecraft Developer</span>
+      </a>
+      <nav>
+        <a href="#about">O mně</a>
+        <a href="#services">Služby</a>
+        <a href="#testimonials">Reference</a>
+        <a href="#pricing">Ceník</a>
+        <a href="#contact">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="kicker">Ahoj, jsem</div>
+        <h1><span>Tvůj Nick</span><br/> Minecraft Developer</h1>
+        <p class="lead sub">Měním Minecraft v realitu pomocí enterprise‑grade vývoje pluginů a Skriptů. Pomáhám serverům růst, být <strong>originální</strong>, <strong>stabilní</strong> a <strong>zábavné</strong>.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#contact">Poptej projekt</a>
+          <a class="btn ghost" href="#services">Co nabízím</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container reveal">
+        <h2>O mně</h2>
+        <p class="lead">Jsem vývojář Minecraft pluginů a Skriptů s několikaletou praxí. Tvořím <strong>custom</strong> řešení, která vylepšují herní zážitek a umožňují serverům běžet hladce i při <strong>tisících</strong> souběžných hráčů.</p>
+        <div class="grid cols-2" style="margin-top:22px">
+          <div class="card">
+            <span class="tag">Co dělám</span>
+            <h3>Profesionální řešení na míru</h3>
+            <p>Od návrhu architektury po nasazení. Mám zkušenosti se Spigot/Paper, Folia, Velocity, Redis, databázemi a CI/CD. Řeším výkon, bezpečnost a dlouhodobou údržbu.</p>
+          </div>
+          <div class="card">
+            <span class="tag">Čísla</span>
+            <div class="stats">
+              <div class="stat">
+                <div class="num">50+</div>
+                <small>Hotových projektů</small>
+              </div>
+              <div class="stat">
+                <div class="num">100K+</div>
+                <small>Obsloužených hráčů</small>
+              </div>
+              <div class="stat">
+                <div class="num">99.9%</div>
+                <small>Dostupnost</small>
+              </div>
+              <div class="stat">
+                <div class="num">24/7</div>
+                <small>Podpora</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container reveal">
+        <h2>Služby</h2>
+        <p class="lead">Všechno níže je možné kombinovat do jednoho balíčku přesně podle tvého serveru.</p>
+        <div class="grid cols-3" style="margin-top:18px">
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16v10H4z" stroke="#3e57a0"/><path d="M8 7V4h8v3" stroke="#7a5cff"/></svg>
+            </div>
+            <h3>Server konfigurace</h3>
+            <p>Nastavení a správa prostředí (Paper/Folia, proxy, databáze, cache) tak, aby běželo hladce bez výpadků.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16" stroke="#22c1dc"/><path d="M12 4v16" stroke="#22c1dc"/></svg>
+            </div>
+            <h3>Výkon & optimalizace</h3>
+            <p>Tuning systémů, pluginů a Skriptů pro rychlé načítání a minimální zátěž. Profilace a odladění TPS.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7h12v10H6z" stroke="#7a5cff"/><path d="M6 10h12" stroke="#3e57a0"/></svg>
+            </div>
+            <h3>Custom development</h3>
+            <p>Unikátní funkce, pluginy a Skripty na míru. Čistý kód, dokumentace, verze na GitHubu a CI/CD.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#22c1dc"/><path d="M12 6v6l4 2" stroke="#7a5cff"/></svg>
+            </div>
+            <h3>Monitoring & správa</h3>
+            <p>Logování, alerty, automatické zálohy a deployment. Neustálý přehled o stavu serveru.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12l4 4L19 6" stroke="#39d98a"/></svg>
+            </div>
+            <h3>Audit & konzultace</h3>
+            <p>Revize konfigurace a kódu, doporučení best practices, roadmapa a prioritizace.</p>
+          </div>
+          <div class="card">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="#7a5cff"/></svg>
+            </div>
+            <h3>24/7 podpora</h3>
+            <p>Spolehlivá komunikace, rychlé reakce a opravy. SLA dle domluvy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials">
+      <div class="container reveal">
+        <h2>Reference</h2>
+        <p class="lead">Krátké ukázky toho, co o mé práci říkají klienti.</p>
+        <div class="testi" style="margin-top:18px">
+          <div class="card quote">
+            <p>„Skvělá komunikace a rychlá dodávka. Plugin přesně podle zadání a bez bugů.“</p>
+            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
+              <span class="avatar"></span>
+              <div><strong>Admin A</strong><br/><small style="color:var(--muted)">Majitel SMP</small></div>
+            </div>
+          </div>
+          <div class="card quote">
+            <p>„Výrazně zlepšil výkon serveru. TPS drží i při eventech s mnoha hráči.“</p>
+            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
+              <span class="avatar"></span>
+              <div><strong>Team B</strong><br/><small style="color:var(--muted)">Network</small></div>
+            </div>
+          </div>
+          <div class="card quote">
+            <p>„Dlouhodobá spolehlivost a podpora 24/7. Doporučuji pro seriózní projekty.“</p>
+            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
+              <span class="avatar"></span>
+              <div><strong>Owner C</strong><br/><small style="color:var(--muted)">Mini‑games</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <div class="container reveal">
+        <h2>Ceník</h2>
+        <p class="lead">Orientační balíčky – přesná cena podle rozsahu a nároků na výkon/údržbu.</p>
+        <div class="pricing" style="margin-top:18px">
+          <div class="card price-card">
+            <span class="pill">Start</span>
+            <h3>Základní Plugin</h3>
+            <div class="price">od 1 500 Kč</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Jednoduchá logika a příkazy</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Konfigurace + dokumentace</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Základní podpora</div>
+          </div>
+          <div class="card price-card" style="border-color:#3852b8">
+            <span class="pill">Pro</span>
+            <h3>Pokročilý Plugin</h3>
+            <div class="price">od 4 500 Kč</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Databáze / GUI / API</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Optimalizace & testy</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Prioritní podpora</div>
+          </div>
+          <div class="card price-card">
+            <span class="pill">Custom</span>
+            <h3>Kompletní řešení</h3>
+            <div class="price">nabídka na míru</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Analýza, návrh architektury</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Vývoj, nasazení, monitoring</div>
+            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>SLA / dlouhodobá údržba</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container reveal">
+        <h2>Kontakt</h2>
+        <p class="lead">Napiš mi poptávku s co nejvíc detaily (verze, typ serveru, deadline). Ozvu se co nejdřív.</p>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div>
+              <label for="name">Jméno / Nick</label>
+              <input id="name" name="name" placeholder="Tvůj Nick" required />
+            </div>
+            <div>
+              <label for="email">E‑mail</label>
+              <input id="email" name="email" type="email" placeholder="email@server.cz" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div>
+              <label for="type">Typ projektu</label>
+              <select id="type" name="type">
+                <option>Plugin</option>
+                <option>Skript</option>
+                <option>Optimalizace</option>
+                <option>Správa serveru</option>
+                <option>Jiné / kombinace</option>
+              </select>
+            </div>
+            <div>
+              <label for="version">MC verze</label>
+              <input id="version" name="version" placeholder="např. 1.20.4 (Paper)" />
+            </div>
+          </div>
+          <div>
+            <label for="message">Popis zadání</label>
+            <textarea id="message" name="message" placeholder="Funkce, přibližný rozsah, rozpočet, termín…" required></textarea>
+          </div>
+          <button class="btn" type="submit">Odeslat poptávku</button>
+          <p id="formMsg" style="margin:8px 0 0; color:var(--muted)"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap">
+      <div>© <span id="year"></span> Tvůj Nick — Minecraft Developer</div>
+      <div><a href="#top">Zpět nahoru ↑</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Aktuální rok
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Jednoduché zobrazení sekcí při scrollu
+    const revealItems = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+    }, {threshold:.14});
+    revealItems.forEach(el=>io.observe(el));
+
+    // Kontakt: mailto s validací
+    const form = document.getElementById('contactForm');
+    const msg = document.getElementById('formMsg');
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      if(!data.name || !data.email || !data.message){
+        msg.textContent = 'Vyplň prosím jméno, e‑mail a popis.';
+        return;
+      }
+      const subject = encodeURIComponent(`[Poptávka] ${data.type || 'Projekt'} – ${data.name}`);
+      const body = encodeURIComponent(
+        `Jméno/Nick: ${data.name}\nEmail: ${data.email}\nTyp: ${data.type}\nVerze: ${data.version || ''}\n\nZpráva:\n${data.message}`
+      );
+      // TODO: změň e-mail na svůj
+      const to = 'tvoje.adresa@example.com';
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      msg.textContent = 'Otevřel se e‑mailový klient s předvyplněnou zprávou. Pokud ne, napiš mi prosím ručně.';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
