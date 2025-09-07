@@ -1,372 +1,631 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Drixo | Minecraft Developer</title>
-  <meta name="description" content="Minecraft plugin & Skript vývojář – custom pluginy, optimalizace výkonu, konfigurace serverů a nepřetržitá podpora." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#0b1221;
-      --bg2:#0e1530;
-      --text:#dfe7ff;
-      --muted:#a0b3d1;
-      --primary:#22c1dc; 
-      --accent:#7a5cff;  
-      --card:#0f1935cc; 
-      --stroke:#1e2b55;
-      --success:#39d98a;
-      --warning:#ffb020;
-      --danger:#ff5d5d;
-      --max:1150px;
-      --radius:18px;
-      --shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.04);
-      --grad:linear-gradient(135deg,var(--accent),var(--primary));
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif; color:var(--text);
-      background: radial-gradient(1200px 600px at 85% -10%, #1a2a6f22, transparent),
-                  radial-gradient(1000px 500px at -10% 10%, #6a11cb22, transparent),
-                  linear-gradient(180deg,var(--bg),var(--bg2));
-    }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max); margin:0 auto; padding:0 22px}
-    .btn{display:inline-flex; align-items:center; gap:.6rem; padding:.9rem 1.2rem; border-radius:14px; font-weight:700; letter-spacing:.2px; background:var(--grad); color:#08111f; border:0; box-shadow:var(--shadow); transition:transform .16s ease, filter .2s ease}
-    .btn:hover{transform:translateY(-2px); filter:saturate(1.08)}
-    .btn.ghost{background:transparent; color:var(--text); border:1px solid var(--stroke)}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drixo - Minecraft Developer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #0f172a 100%);
+            background-color: #0f172a;
+            min-height: 100vh;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(160%) blur(10px); background:linear-gradient(180deg, rgba(10,16,32,.85), rgba(10,16,32,.55)); border-bottom:1px solid #0e1a3c}
-    .nav{display:flex; align-items:center; justify-content:space-between; height:70px}
-    .brand{display:flex; align-items:center; gap:.7rem; font-weight:800; letter-spacing:.2px}
-    .brand .logo{width:34px;height:34px;border-radius:10px; background:var(--grad); display:grid; place-items:center; box-shadow:var(--shadow)}
-    .brand .logo svg{width:22px;height:22px}
-    nav a{padding:.6rem .8rem; color:var(--muted); border-radius:10px}
-    nav a:hover{color:var(--text); background:#0f1b3a}
+        .glass-card {
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(30, 41, 59, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
 
-    section{padding:96px 0}
-    h1,h2,h3{margin:0 0 14px}
-    h1{font-size:clamp(32px, 4.8vw, 56px); line-height:1.04}
-    h2{font-size:clamp(26px,3.8vw,40px)}
-    p.lead{font-size:clamp(16px,2.2vw,20px); color:var(--muted)}
+        .glass-input {
+            background-color: rgba(51, 65, 85, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(100, 116, 139, 0.5);
+        }
 
-    .hero{position:relative; text-align:center}
-    .hero .kicker{letter-spacing:.24em; text-transform:uppercase; color:#7aa7ff; font-weight:700; font-size:.82rem}
-    .hero h1 span{background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent}
-    .hero .sub{max-width:850px; margin:18px auto 28px}
-    .hero-cta{display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+        .glass-input:focus {
+            outline: none;
+            ring: 2px;
+            ring-color: rgba(59, 130, 246, 0.5);
+        }
 
-    .grid{display:grid; gap:18px}
-    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
-    .grid.cols-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:900px){ .grid.cols-3, .grid.cols-2{grid-template-columns:1fr} }
+        .gradient-button {
+            background: linear-gradient(to right, #2563eb, #7c3aed);
+        }
 
-    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:22px; box-shadow:var(--shadow); position:relative; overflow:hidden}
-    .card .tag{display:inline-block; padding:.35rem .6rem; border-radius:999px; font-size:.76rem; background:#0f1b3a; border:1px solid #1c2a58; color:#9ab1df; margin-bottom:10px}
-    .card h3{font-size:1.24rem}
-    .card p{color:var(--muted)}
-    .icon{width:38px; height:38px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(145deg,#15224b,#0b163d); border:1px solid #1b2a5e; box-shadow:inset 0 0 0 1px rgba(255,255,255,.04)}
-
-    .stats{display:flex; gap:18px; flex-wrap:wrap}
-    .stat{flex:1 1 180px; background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; text-align:center}
-    .stat .num{font-size:1.8rem; font-weight:800; background:var(--grad); -webkit-background-clip:text; color:transparent}
-    .stat small{color:var(--muted)}
-
-    .testi{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){ .testi{grid-template-columns:1fr} }
-    .quote{position:relative}
-    .quote:before{content:"\201C"; position:absolute; top:-22px; left:-6px; font-size:64px; line-height:0; color:#30407a}
-    .avatar{width:44px;height:44px;border-radius:50%;background:#1a2b5e; display:inline-block}
-
-    .pricing{display:grid; gap:18px; grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){ .pricing{grid-template-columns:1fr} }
-    .price-card{position:relative}
-    .price{font-size:2rem; font-weight:800}
-    .pill{display:inline-block; padding:.3rem .6rem; border-radius:999px; border:1px solid #27408f; background:#0d1a3a; color:#a7b8ea; font-size:.8rem}
-    .check{display:flex; gap:10px; align-items:flex-start; margin:.44rem 0; color:var(--muted)}
-    .check svg{flex:0 0 18px}
-
-    form{display:grid; gap:14px}
-    input, textarea, select{width:100%; padding:14px; border-radius:12px; border:1px solid var(--stroke); background:#0b1736; color:var(--text); outline:none}
-    textarea{min-height:160px; resize:vertical}
-    label{font-size:.95rem; color:#b6c7ef}
-    .form-row{display:grid; gap:14px; grid-template-columns:repeat(2,1fr)}
-    @media (max-width:700px){ .form-row{grid-template-columns:1fr} }
-
-    footer{padding:36px 0; border-top:1px solid #0e1a3c; color:#8ea2cf}
-
-    .reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
-    .reveal.show{opacity:1; transform:none}
-
-    .float-dot{position:fixed; width:8px; height:8px; border-radius:50%; background:radial-gradient(circle at 30% 30%, #a5d8ff, #22c1dc11); filter:blur(.2px); opacity:.7; z-index:0}
-  </style>
+        .gradient-button:hover {
+            background: linear-gradient(to right, #1d4ed8, #6d28d9);
+        }
+    </style>
 </head>
-<body>
-  
-  <div class="float-dot" style="left:2%; top:90%"></div>
-  <div class="float-dot" style="left:92%; top:8%"></div>
-  <div class="float-dot" style="left:85%; top:84%"></div>
+<body class="min-h-screen bg-slate-900 text-white">
+    <section class="relative py-20 px-4 text-center">
+        <div class="max-w-4xl mx-auto fade-in">
+            <div class="mb-8">
+                <div class="w-32 h-32 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 p-1">
+                    <img src="images/profilovka.jpg" alt="Profilová fotka"
+                    </div>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-bold mb-2 text-balance drop-shadow-lg text-white">Drixo</h1>
+                <h2 class="text-2xl md:text-3xl mb-4 drop-shadow-md text-blue-300">Minecraft Developer</h2>
+                <p class="text-xl mb-8 text-pretty max-w-2xl mx-auto drop-shadow-md text-gray-100">
+                    Crafting innovative plugins and scripts to enhance your Minecraft server experience. Specializing in
+                    custom solutions that bring your server vision to life.
+                </p>
+            </div>
 
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top">
-        <span class="logo" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="#061022" fill="url(#g)"/><defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse"><stop stop-color="#7a5cff"/><stop offset="1" stop-color="#22c1dc"/></linearGradient></defs></svg>
-        </span>
-        <span>Minecraft Developer</span>
-      </a>
-      <nav>
-        <a href="#about">O mně</a>
-        <a href="#services">Služby</a>
-        <a href="#testimonials">Reference</a>
-        <a href="#pricing">Ceník</a>
-        <a href="#contact">Kontakt</a>
-      </nav>
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="gradient-button px-6 py-3 rounded-lg text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300" onclick="scrollToContact()">
+                    Request a project
+                </button>
+                <button class="border border-blue-300 hover:bg-blue-900/50 bg-slate-800/30 px-6 py-3 rounded-lg shadow-lg font-semibold text-blue-300 transition-all duration-300" onclick="scrollToServices()">
+                    What I offer
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 fade-in">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 drop-shadow-md text-white">About Me</h2>
+            <p class="text-lg leading-relaxed max-w-3xl mx-auto text-gray-100">
+                I'm a passionate Minecraft developer with over 3 years of experience creating custom plugins and scripts. I
+                specialize in building robust, scalable solutions that enhance gameplay and server management. From simple
+                automation scripts to complex economy systems, I bring technical expertise and creative problem-solving to
+                every project.
+            </p>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 px-4 fade-in">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 drop-shadow-md text-white">Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="code" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Custom Plugins</h3>
+                        <p class="text-gray-100">Tailored Java plugins built specifically for your server's unique needs</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="zap" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Skripts</h3>
+                        <p class="text-gray-100">Lightweight scripting solutions for quick server customizations</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="activity" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Optimization</h3>
+                        <p class="text-gray-100">Performance tuning and optimization to keep your server running smoothly</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="server" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Server Setup</h3>
+                        <p class="text-gray-100">Complete server configuration and deployment services</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="shield" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Monitoring</h3>
+                        <p class="text-gray-100">Real-time monitoring solutions to track server health and performance</p>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                    <div class="text-center">
+                        <div class="w-12 h-12 mx-auto mb-4 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
+                            <i data-lucide="headphones" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Support</h3>
+                        <p class="text-gray-100">Ongoing maintenance and technical support for your Minecraft server</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 fade-in">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 drop-shadow-md text-white">Pricing</h2>
+            
+            <div class="space-y-6 mb-12">
+                <h3 class="text-2xl font-semibold text-center text-white mb-6">Plugins</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Lite</h4>
+                            <span class="text-2xl font-bold text-blue-300">$50-150</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Basic functionality
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Simple commands
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Basic configuration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                1 week support
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Advanced</h4>
+                            <span class="text-2xl font-bold text-blue-300">$150-400</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Complex features
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Database integration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                GUI interfaces
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                1 month support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Custom permissions
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Premium</h4>
+                            <span class="text-2xl font-bold text-blue-300">$400-800</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Enterprise features
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Multi-server support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Advanced APIs
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                3 months support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Source code included
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6 mb-12">
+                <h3 class="text-2xl font-semibold text-center text-white mb-6">Skripts</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Basic</h4>
+                            <span class="text-2xl font-bold text-blue-300">$25-75</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Simple automation
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Basic events
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Configuration files
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                1 week support
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Plus</h4>
+                            <span class="text-2xl font-bold text-blue-300">$75-200</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Advanced logic
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                GUI integration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Database support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                2 weeks support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Custom functions
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Ultimate</h4>
+                            <span class="text-2xl font-bold text-blue-300">$200-400</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Complex systems
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Multi-file projects
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                API integration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                1 month support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Documentation included
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6 mb-12">
+                <h3 class="text-2xl font-semibold text-center text-white mb-6">Server Setup</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Start</h4>
+                            <span class="text-2xl font-bold text-blue-300">$100-200</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Basic server setup
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Essential plugins
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Basic configuration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Setup guide
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Pro</h4>
+                            <span class="text-2xl font-bold text-blue-300">$200-500</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Advanced configuration
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Custom plugins
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Performance optimization
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                2 weeks support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Backup system
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Complete</h4>
+                            <span class="text-2xl font-bold text-blue-300">$500-1000</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Full server ecosystem
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Custom development
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Advanced monitoring
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                1 month support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Training included
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h3 class="text-2xl font-semibold text-center text-white mb-6">Extra</h3>
+                <div class="flex justify-center">
+                    <div class="glass-card rounded-xl p-6 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300 max-w-sm">
+                        <div class="text-center mb-4">
+                            <h4 class="text-xl font-bold text-white mb-2">Enterprise Support</h4>
+                            <span class="text-2xl font-bold text-blue-300">$200/month</span>
+                        </div>
+                        <ul class="space-y-2">
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                24/7 priority support
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Monthly consultations
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Performance reviews
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Emergency fixes
+                            </li>
+                            <li class="text-sm flex items-center text-gray-100">
+                                <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 flex-shrink-0"></div>
+                                Direct contact
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-16 px-4 fade-in">
+        <div class="max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 drop-shadow-md text-white">Get In Touch</h2>
+            <div class="glass-card rounded-xl p-8 shadow-xl">
+                <div class="text-center mb-6">
+                    <h3 class="text-xl font-bold text-white mb-2">Start Your Project</h3>
+                    <p class="text-gray-100">
+                        Ready to bring your Minecraft server vision to life? Fill out the form below and I'll get back to you
+                        within 24 hours with a detailed proposal.
+                    </p>
+                </div>
+                
+<form action="https://formspree.io/f/meolvkko" method="POST" id="contactForm" class="space-y-6">
+    <div>
+        <label for="name" class="text-white font-medium mb-2 block">Full Name *</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your full name or nickname"
+            class="glass-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 transition-all duration-200"
+            required
+        />
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="kicker">Ahoj, jsem</div>
-        <h1><span>Drixo</span><br/> Minecraft Developer</h1>
-        <p class="lead sub">Měním Minecraft v realitu pomocí enterprise‑grade vývoje pluginů a Skriptů. Pomáhám serverům růst, být <strong>originální</strong>, <strong>stabilní</strong> a <strong>zábavné</strong>.</p>
-        <div class="hero-cta">
-          <a class="btn" href="#contact">Poptej projekt</a>
-          <a class="btn ghost" href="#services">Co nabízím</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container reveal">
-        <h2>O mně</h2>
-        <p class="lead">Jsem vývojář Minecraft pluginů a Skriptů s několikaletou praxí. Tvořím <strong>custom</strong> řešení, která vylepšují herní zážitek a umožňují serverům běžet hladce i při <strong>tisících</strong> souběžných hráčů.</p>
-        <div class="grid cols-2" style="margin-top:22px">
-          <div class="card">
-            <span class="tag">Co dělám</span>
-            <h3>Profesionální řešení na míru</h3>
-            <p>Od návrhu architektury po nasazení. Mám zkušenosti se Spigot/Paper, Folia, Velocity, Redis, databázemi a CI/CD. Řeším výkon, bezpečnost a dlouhodobou údržbu.</p>
-          </div>
-          <div class="card">
-            <span class="tag">Čísla</span>
-            <div class="stats">
-              <div class="stat">
-                <div class="num">100+</div>
-                <small>Hotových projektů</small>
-              </div>
-              <div class="stat">
-                <div class="num">10K+</div>
-                <small>Obsloužených hráčů</small>
-              </div>
-              <div class="stat">
-                <div class="num">99.9%</div>
-                <small>Dostupnost</small>
-              </div>
-              <div class="stat">
-                <div class="num">24/7</div>
-                <small>Podpora</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container reveal">
-        <h2>Služby</h2>
-        <p class="lead">Všechno níže je možné kombinovat do jednoho balíčku přesně podle tvého serveru.</p>
-        <div class="grid cols-3" style="margin-top:18px">
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 7h16v10H4z" stroke="#3e57a0"/><path d="M8 7V4h8v3" stroke="#7a5cff"/></svg>
-            </div>
-            <h3>Server konfigurace</h3>
-            <p>Nastavení a správa prostředí (Paper/Folia, proxy, databáze, cache) tak, aby běželo hladce bez výpadků.</p>
-          </div>
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 12h16" stroke="#22c1dc"/><path d="M12 4v16" stroke="#22c1dc"/></svg>
-            </div>
-            <h3>Výkon & optimalizace</h3>
-            <p>Tuning systémů, pluginů a Skriptů pro rychlé načítání a minimální zátěž. Profilace a odladění TPS.</p>
-          </div>
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 7h12v10H6z" stroke="#7a5cff"/><path d="M6 10h12" stroke="#3e57a0"/></svg>
-            </div>
-            <h3>Custom development</h3>
-            <p>Unikátní funkce, pluginy a Skripty na míru. Čistý kód, dokumentace, verze na GitHubu a CI/CD.</p>
-          </div>
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="8" stroke="#22c1dc"/><path d="M12 6v6l4 2" stroke="#7a5cff"/></svg>
-            </div>
-            <h3>Monitoring & správa</h3>
-            <p>Logování, alerty, automatické zálohy a deployment. Neustálý přehled o stavu serveru.</p>
-          </div>
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 12l4 4L19 6" stroke="#39d98a"/></svg>
-            </div>
-            <h3>Audit & konzultace</h3>
-            <p>Revize konfigurace a kódu, doporučení best practices, roadmapa a prioritizace.</p>
-          </div>
-          <div class="card">
-            <div class="icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9L12 3z" stroke="#7a5cff"/></svg>
-            </div>
-            <h3>24/7 podpora</h3>
-            <p>Spolehlivá komunikace, rychlé reakce a opravy. SLA dle domluvy.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="testimonials">
-      <div class="container reveal">
-        <h2>Reference</h2>
-        <p class="lead">Krátké ukázky toho, co o mé práci říkají klienti.</p>
-        <div class="testi" style="margin-top:18px">
-          <div class="card quote">
-            <p>„Rychlá dodávka. Plugin přesně jak jsem si představoval.“</p>
-            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
-              <span class="avatar" style="background-image:url('clxeric313.jpg')"></span>
-              <div><strong>clxeric313</strong><br/><small style="color:var(--muted)">SMP</small></div>
-            </div>
-          </div>
-          <div class="card quote">
-            <p>„Výrazně zlepšil výkon serveru. TPS drží i při 200 hráčích.“</p>
-            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
-              <span class="avatar"></span>
-              <div><strong>Krian1</strong><br/><small style="color:var(--muted)">Network</small></div>
-            </div>
-          </div>
-          <div class="card quote">
-            <p>„Dlouhodobá spolehlivost a podpora 24/7. Doporučuji pro seriózní projekty vše běží super.“</p>
-            <div style="display:flex; gap:12px; align-items:center; margin-top:12px">
-              <span class="avatar"></span>
-              <div><strong>cryoares</strong><br/><small style="color:var(--muted)">MiniGame</small></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container reveal">
-        <h2>Ceník</h2>
-        <p class="lead">Orientační balíčky – přesná cena podle rozsahu a nároků na výkon/údržbu.</p>
-        <div class="pricing" style="margin-top:18px">
-          <div class="card price-card">
-            <span class="pill">Start</span>
-            <h3>Základní Plugin</h3>
-            <div class="price">od 1 500 Kč</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Jednoduchá logika a příkazy</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Konfigurace + dokumentace</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Základní podpora</div>
-          </div>
-          <div class="card price-card" style="border-color:#3852b8">
-            <span class="pill">Pro</span>
-            <h3>Pokročilý Plugin</h3>
-            <div class="price">od 4 500 Kč</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Databáze / GUI / API</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Optimalizace & testy</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Prioritní podpora</div>
-          </div>
-          <div class="card price-card">
-            <span class="pill">Custom</span>
-            <h3>Kompletní řešení</h3>
-            <div class="price">nabídka na míru</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Analýza, návrh architektury</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>Vývoj, nasazení, monitoring</div>
-            <div class="check"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"></path></svg>SLA / dlouhodobá údržba</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container reveal">
-        <h2>Kontakt</h2>
-        <p class="lead">Napiš mi poptávku s co nejvíc detaily (verze, typ serveru, deadline). Ozvu se co nejdřív.</p>
-        <form id="contactForm" novalidate>
-          <div class="form-row">
-            <div>
-              <label for="name">Jméno / Nick</label>
-              <input id="name" name="name" placeholder="Tvůj Nick" required />
-            </div>
-            <div>
-              <label for="email">E‑mail</label>
-              <input id="email" name="email" type="email" placeholder="email@server.cz" required />
-            </div>
-          </div>
-          <div class="form-row">
-            <div>
-              <label for="type">Typ projektu</label>
-              <select id="type" name="type">
-                <option>Plugin</option>
-                <option>Skript</option>
-                <option>Optimalizace</option>
-                <option>Správa serveru</option>
-                <option>Jiné / kombinace</option>
-              </select>
-            </div>
-            <div>
-              <label for="version">MC verze</label>
-              <input id="version" name="version" placeholder="např. 1.20.4 (Paper)" />
-            </div>
-          </div>
-          <div>
-            <label for="message">Popis zadání</label>
-            <textarea id="message" name="message" placeholder="Funkce, přibližný rozsah, rozpočet, termín…" required></textarea>
-          </div>
-          <button class="btn" type="submit">Odeslat poptávku</button>
-          <p id="formMsg" style="margin:8px 0 0; color:var(--muted)"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container" style="display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap">
-      <div>© <span id="year"></span> Drixo — Minecraft Developer</div>
-      <div><a href="#top">Zpět nahoru ↑</a></div>
+    <div>
+        <label for="email" class="text-white font-medium mb-2 block">Email Address *</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your.email@example.com"
+            class="glass-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 transition-all duration-200"
+            required
+        />
     </div>
-  </footer>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    <div>
+        <label for="budget" class="text-white font-medium mb-2 block">Project Budget (Optional)</label>
+        <input
+            type="text"
+            id="budget"
+            name="budget"
+            placeholder="e.g., $100-500 or Not sure yet"
+            class="glass-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 transition-all duration-200"
+        />
+    </div>
 
-    const revealItems = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
-    }, {threshold:.14});
-    revealItems.forEach(el=>io.observe(el));
+    <div>
+        <label for="projectType" class="text-white font-medium mb-2 block">Service Type *</label>
+        <select
+            id="projectType"
+            name="projectType"
+            class="glass-input w-full px-4 py-3 rounded-lg text-white transition-all duration-200"
+            required
+        >
+            <option value="">Choose the service you need</option>
+            <option value="plugin">Custom Plugin Development</option>
+            <option value="skript">Skript Development</option>
+            <option value="server-setup">Server Setup & Configuration</option>
+            <option value="optimization">Performance Optimization</option>
+            <option value="support">Ongoing Support & Maintenance</option>
+            <option value="other">Other / Consultation</option>
+        </select>
+    </div>
 
-    const form = document.getElementById('contactForm');
-    const msg = document.getElementById('formMsg');
-    form.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(form).entries());
-      if(!data.name || !data.email || !data.message){
-        msg.textContent = 'Vyplň prosím jméno, e‑mail a popis.';
-        return;
-      }
-      const subject = encodeURIComponent(`[Poptávka] ${data.type || 'Projekt'} – ${data.name}`);
-      const body = encodeURIComponent(
-        `Jméno/Nick: ${data.name}\nEmail: ${data.email}\nTyp: ${data.type}\nVerze: ${data.version || ''}\n\nZpráva:\n${data.message}`
-      );
-      const to = 'drixofx@gmail.com';
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-      msg.textContent = 'Otevřel se e‑mailový klient s předvyplněnou zprávou. Pokud ne, napiš mi prosím ručně.';
-      form.reset();
-    });
-  </script>
+    <div>
+        <label for="description" class="text-white font-medium mb-2 block">Project Description *</label>
+        <textarea
+            id="description"
+            name="description"
+            rows="6"
+            class="glass-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 transition-all duration-200 resize-none"
+            placeholder="Please provide detailed information about your project:
+• What features do you need?
+• What Minecraft version?
+• Expected player count?
+• Timeline requirements?
+• Any specific functionality or integrations?"
+            required
+        ></textarea>
+    </div>
+
+    <button
+        type="submit"
+        class="gradient-button w-full py-3 rounded-lg font-semibold text-white shadow-lg hover:shadow-xl hover:shadow-blue-500/25 transition-all duration-300"
+    >
+        Send Project Request
+    </button>
+</form>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-4 border-t border-slate-600/30">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <p class="text-gray-300">© 2024 Drixo - Minecraft Developer. All rights reserved.</p>
+            <button
+                onclick="scrollToTop()"
+                class="hover:text-blue-100 transition-colors flex items-center gap-1 text-blue-300"
+            >
+                <i data-lucide="arrow-up" class="h-4 w-4"></i>
+                Back to top
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el) => observer.observe(el));
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            if (!data.name || !data.email || !data.projectType || !data.description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const subject = encodeURIComponent(`Project Request: ${data.projectType}`);
+            const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Budget: ${data.budget || 'Not specified'}
+Project Type: ${data.projectType}
+
+Project Description:
+${data.description}
+            `);
+            
+            window.location.href = `mailto:drixo@example.com?subject=${subject}&body=${body}`;
+        });
+    </script>
 </body>
 </html>
