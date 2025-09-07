@@ -512,3 +512,80 @@
   <button type="submit">Send Project Request</button>
 </form>
 
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-4 border-t border-slate-600/30">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <p class="text-gray-300">© 2024 Drixo - Minecraft Developer. All rights reserved.</p>
+            <button
+                onclick="scrollToTop()"
+                class="hover:text-blue-100 transition-colors flex items-center gap-1 text-blue-300"
+            >
+                <i data-lucide="arrow-up" class="h-4 w-4"></i>
+                Back to top
+            </button>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in');
+            elements.forEach((el) => observer.observe(el));
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            if (!data.name || !data.email || !data.projectType || !data.description) {
+                alert('Please fill in all required fields');
+                return;
+            }
+            
+            const subject = encodeURIComponent(`Project Request: ${data.projectType}`);
+            const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Budget: ${data.budget || 'Not specified'}
+Project Type: ${data.projectType}
+
+Project Description:
+${data.description}
+            `);
+            
+            window.location.href = `mailto:drixo@example.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
