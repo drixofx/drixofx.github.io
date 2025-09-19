@@ -8,49 +8,50 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <style>
-        body {
-            background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #0f172a 100%);
-            background-color: #0f172a;
-            min-height: 100vh;
-        }
-        
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        
-        .fade-in.animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    body {
+        background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%);
+        background-color: #0f172a;
+        min-height: 100vh;
+    }
+    
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .fade-in.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-        .glass-card {
-            background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(30, 41, 59, 0.6) 100%);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(148, 163, 184, 0.2);
-        }
+    .glass-card {
+        background: linear-gradient(135deg, rgba(30, 58, 138, 0.35) 0%, rgba(15, 23, 42, 0.7) 100%);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(37, 99, 235, 0.3);
+    }
 
-        .glass-input {
-            background-color: rgba(51, 65, 85, 0.3);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(100, 116, 139, 0.5);
-        }
+    .glass-input {
+        background-color: rgba(30, 58, 138, 0.2);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(37, 99, 235, 0.4);
+    }
 
-        .glass-input:focus {
-            outline: none;
-            ring: 2px;
-            ring-color: rgba(59, 130, 246, 0.5);
-        }
+    .glass-input:focus {
+        outline: none;
+        box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+        border-color: rgba(37, 99, 235, 0.8);
+    }
 
-        .gradient-button {
-            background: linear-gradient(to right, #2563eb, #7c3aed);
-        }
+    .gradient-button {
+        background: linear-gradient(to right, #1e3a8a, #2563eb);
+    }
 
-        .gradient-button:hover {
-            background: linear-gradient(to right, #1d4ed8, #6d28d9);
-        }
-    </style>
+    .gradient-button:hover {
+        background: linear-gradient(to right, #1e40af, #1d4ed8);
+    }
+</style>
+
 </head>
 <body class="min-h-screen bg-slate-900 text-white">
     <section class="relative py-20 px-4 text-center">
